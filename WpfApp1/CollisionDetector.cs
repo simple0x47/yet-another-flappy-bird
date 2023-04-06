@@ -16,26 +16,7 @@ namespace YetAnotherFlappyBird
 
         public bool CollidesWithPipeObject(Vector2D playerPosition, PipeObject pipeObject, double playerRadius)
         {
-            Rect upperNeckRect = pipeObject.UpperNeckRect();
-            Rect upperHeadRect = pipeObject.UpperHeadRect();
-            Rect lowerNeckRect = pipeObject.LowerNeckRect();
-            Rect lowerHeadRect = pipeObject.LowerHeadRect();
-
-            if (IsPositionWithinRect(playerPosition, upperNeckRect) ||
-                IsPositionWithinRect(playerPosition, upperHeadRect) ||
-                IsPositionWithinRect(playerPosition, lowerNeckRect) ||
-                IsPositionWithinRect(playerPosition, lowerHeadRect))
-            {
-                return true;
-            }
-
-            if (IsPositionWithinRadiusFromRect(playerPosition, upperNeckRect, playerRadius) ||
-                IsPositionWithinRadiusFromRect(playerPosition, upperHeadRect, playerRadius) ||
-                IsPositionWithinRadiusFromRect(playerPosition, lowerNeckRect, playerRadius) ||
-                IsPositionWithinRadiusFromRect(playerPosition, lowerHeadRect, playerRadius))
-            {
-                return true;
-            }
+            
 
             return false;
         }
@@ -52,7 +33,8 @@ namespace YetAnotherFlappyBird
 
             foreach (var line in lines)
             {
-                if (position.DistanceToLine(line.Item1, line.Item2) <= radius)
+                var distance = position.DistanceToLine(line.Item1, line.Item2);
+                if (distance <= radius)
                 {
                     return true;
                 }

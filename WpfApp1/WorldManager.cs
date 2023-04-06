@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -9,6 +10,7 @@ namespace YetAnotherFlappyBird
     {
         private const ulong MAX_SPEED_AFTER_TICKS = 50000;
         private const double REMOVE_PIPE_OBJECTS_AFTER_LEFT_POSITION = -200;
+        private const long SPAWN_AFTER_EACH_TICKS = 500;
 
         private GameWindow _gameWindow;
         private Canvas _gameCanvas;
@@ -18,33 +20,41 @@ namespace YetAnotherFlappyBird
 
         private ulong _tick = 0;
         private double _speed = 1;
+        private double _spawnLeftPosition;
+        private Random _random;
 
         private CollisionDetector _collisionDetector;
         private double _playerRadius = 0;
 
         private ulong _score = 0;
 
+        private PlayerController _playerController;
+
         public delegate void OnPlayerCollideEventHandler(object sender, OnPlayerCollideEventArgs e);
         public event OnPlayerCollideEventHandler OnPlayerCollide;
 
-        public WorldManager(GameWindow gameWindow, Canvas gameCanvas)
+        public WorldManager(GameWindow gameWindow, Canvas gameCanvas, PlayerController playerController)
         {
             _gameWindow = gameWindow;
             _gameCanvas = gameCanvas;
             _pipeObjects = new List<PipeObject>();
             _pipesToBeRemoved = new List<PipeObject>();
+            _random = new Random();
             _collisionDetector = new CollisionDetector();
             _playerRadius = gameWindow.PlayerCharacter.Width / 2;
+            _playerController = playerController;
+
+            _spawnLeftPosition = _gameWindow.Width;
 
             CompositionTarget.Rendering += Update;
         }
 
-        public void SpawnPipeObject(double leftPosition, double divisionOffset)
+        public void SpawnPipeObject(double divisionOffset)
         {
             PipeObject pipeObject = new PipeObject();
-            Canvas.SetLeft(pipeObject, leftPosition);
+            Canvas.SetLeft(pipeObject, _spawnLeftPosition);
             Canvas.SetTop(pipeObject, 0);
-
+            
             _gameCanvas.Children.Add(pipeObject);
             _pipeObjects.Add(pipeObject);
 
@@ -113,6 +123,13 @@ namespace YetAnotherFlappyBird
             Vector2D playerPosition = GetPlayerPosition();
 
             DisplacePipeObjectsAndDetectCollision(playerPosition);
+
+            if (_tick % SPAWN_AFTER_EACH_TICKS == 0)
+            {
+                SpawnPipeObject(Math.Max(0.25, Math.Min(0.75, _random.NextDouble())));
+            }
+
+            _playerController.Update();
         }
 
         public Vector2D GetPlayerPosition()

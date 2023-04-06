@@ -21,15 +21,17 @@ namespace YetAnotherFlappyBird
     public partial class GameWindow : Window
     {
         private WorldManager _worldManager;
+        private PlayerController _playerController;
 
         public GameWindow()
         {
             InitializeComponent();
 
+            _playerController = new PlayerController(PlayerCharacter);
+
             // Start game
-            _worldManager = new WorldManager(this, GameCanvas);
+            _worldManager = new WorldManager(this, GameCanvas, _playerController);
             _worldManager.OnPlayerCollide += EndGame;
-            _worldManager.SpawnPipeObject(250, 0.2);
         }
 
         public void EndGame(object sender, OnPlayerCollideEventArgs e)
@@ -40,6 +42,12 @@ namespace YetAnotherFlappyBird
             retryWindow.Show();
 
             Close();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            _playerController.Jump();
         }
     }
 }

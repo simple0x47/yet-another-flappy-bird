@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YetAnotherFlappyBird"
         mc:Ignorable="d"
-        Title="GameWindow" Height="450" Width="800">
+        Title="GameWindow" Height="450" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Canvas x:Name="GameCanvas">
         <Ellipse x:Name="PlayerCharacter" Height="32" Canvas.Left="30" Canvas.Top="201" Width="32" HorizontalAlignment="Left" VerticalAlignment="Center" Fill="#FFCD9B10"/>
     </Canvas>
