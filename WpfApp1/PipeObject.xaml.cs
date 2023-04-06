@@ -110,5 +110,44 @@ namespace YetAnotherFlappyBird
             Canvas.SetLeft(LowerHead, headLeftPosition);
             Canvas.SetTop(LowerHead, lowerHeadTop);
         }
+
+        public Rect UpperNeckRect()
+        {
+            return new Rect(
+                Canvas.GetLeft(this) + Canvas.GetLeft(UpperNeck),
+                Canvas.GetTop(this),
+                UpperNeck.Width,
+                UpperNeck.Height);
+        }
+
+        public Rect UpperHeadRect()
+        {
+            return new Rect(
+                Canvas.GetLeft(this) + Canvas.GetLeft(UpperHead),
+                Canvas.GetTop(this) + Canvas.GetTop(UpperHead),
+                UpperHead.Width,
+                UpperHead.Height
+            );
+        }
+
+        public Rect LowerNeckRect()
+        {
+            return new Rect(
+                Canvas.GetLeft(this) + Canvas.GetLeft(LowerNeck),
+                Canvas.GetTop(this) + Canvas.GetTop(LowerNeck),
+                LowerNeck.Width,
+                LowerNeck.Height
+            );
+        }
+
+        public Rect LowerHeadRect()
+        {
+            return new Rect(
+                Canvas.GetLeft(this) + Canvas.GetLeft(LowerHead),
+                Canvas.GetTop(this) + Canvas.GetTop(LowerHead),
+                LowerHead.Width,
+                LowerHead.Height
+            );
+        }
     }
 }

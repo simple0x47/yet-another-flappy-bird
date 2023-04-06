@@ -25,13 +25,21 @@ namespace YetAnotherFlappyBird
         public GameWindow()
         {
             InitializeComponent();
-            StartGame();
+
+            // Start game
+            _worldManager = new WorldManager(this, GameCanvas);
+            _worldManager.OnPlayerCollide += EndGame;
+            _worldManager.SpawnPipeObject(250, 0.2);
         }
 
-        public void StartGame()
+        public void EndGame(object sender, OnPlayerCollideEventArgs e)
         {
-            _worldManager = new WorldManager(this, GameCanvas);
-            _worldManager.SpawnPipeObject(250, 0.5);
+            _worldManager.OnPlayerCollide -= EndGame;
+
+            RetryWindow retryWindow = new RetryWindow(1);
+            retryWindow.Show();
+
+            Close();
         }
     }
 }

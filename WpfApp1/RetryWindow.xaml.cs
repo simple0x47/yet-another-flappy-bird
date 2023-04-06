@@ -15,21 +15,24 @@ using System.Windows.Shapes;
 namespace YetAnotherFlappyBird
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for RetryWindow.xaml
     /// </summary>
-    public partial class MainMenu : Window
+    public partial class RetryWindow : Window
     {
-        public MainMenu()
+        public RetryWindow(ulong score)
         {
             InitializeComponent();
+
+            ScoreLabel.Content = $"SCORE: {score}";
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        private void RetryButton_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow();
-            PlayButton.Click -= PlayButton_Click;
-
+            GameWindow gameWindow = new();
             gameWindow.Show();
+
+            RetryButton.Click -= RetryButton_Click;
+
             Close();
         }
     }
