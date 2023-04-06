@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 
-namespace WpfApp1
+namespace YetAnotherFlappyBird
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StartWindow.xaml
     /// </summary>
     public partial class StartWindow : Window
     {

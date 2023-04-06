@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WpfApp1
+namespace YetAnotherFlappyBird
 {
     /// <summary>
     /// Interaction logic for App.xaml
