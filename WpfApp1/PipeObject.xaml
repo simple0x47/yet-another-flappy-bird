@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="YetAnotherFlappyBird.PipeObject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:YetAnotherFlappyBird"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="200">
+    <Canvas x:Name="PipeObjectCanvas">
+        <Rectangle x:Name="LowerHead" Height="50" Width="200" HorizontalAlignment="Center" Canvas.Top="300" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF82FF0A"/>
+                    <GradientStop Color="#FF51891B" Offset="0.988"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="UpperHead" Height="50" Width="200" HorizontalAlignment="Center" Canvas.Top="100" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF51891B" Offset="0"/>
+                    <GradientStop Color="#FF82FF0A" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="LowerNeck" Height="100" Width="140" HorizontalAlignment="Left" Canvas.Left="30" Canvas.Top="350" VerticalAlignment="Top">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF51891B"/>
+                    <GradientStop Color="#FF253F0C" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="UpperNeck" Height="100" Width="140" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Canvas.Left="30" VerticalAlignment="Center">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="360"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF253F0C"/>
+                    <GradientStop Color="#FF51891B" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Canvas>
+</UserControl>

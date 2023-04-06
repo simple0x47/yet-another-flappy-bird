@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,22 +16,26 @@ using System.Windows.Shapes;
 namespace YetAnotherFlappyBird
 {
     /// <summary>
-    /// Interaction logic for MainMenu.xaml
+    /// Interaction logic for GameWindow.xaml
     /// </summary>
-    public partial class MainMenu : Window
+    public partial class GameWindow : Window
     {
-        public MainMenu()
+        private WorldManager _worldManager;
+
+        public GameWindow()
         {
             InitializeComponent();
+            StartGame();
         }
 
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        public void StartGame()
         {
-            GameWindow gameWindow = new GameWindow();
-            PlayButton.Click -= PlayButton_Click;
+            _worldManager = new WorldManager(this, GameCanvas);
+        }
 
-            gameWindow.Show();
-            this.Close();
+        private void GameCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _worldManager.SpawnPipeObject();
         }
     }
 }
