@@ -31,11 +31,7 @@ namespace YetAnotherFlappyBird
         public void StartGame()
         {
             _worldManager = new WorldManager(this, GameCanvas);
-        }
-
-        private void GameCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            _worldManager.SpawnPipeObject();
+            _worldManager.SpawnPipeObject(250, 0.5);
         }
     }
 }
